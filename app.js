@@ -10,7 +10,12 @@ window.addEventListener('load', () => {
   let tempMin = document.querySelector('.temp-min');
   let tempHumidity = document.querySelector('.humidity');
   let tempPressure = document.querySelector('.pressure');
-  let locationIcon = document.getElementById('location-icon')
+  let locationIcon = document.getElementById('location-icon');
+  let locationCountry = document.querySelector('.location-country');
+  let locationSunrise = document.querySelector('.location-sunrise');
+  let locationSunset = document.querySelector('.location-sunset');
+  let windDeg = document.querySelector('.wind-deg');
+  let windSpeed = document.querySelector('.wind-speed');
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(position => {
@@ -27,7 +32,14 @@ window.addEventListener('load', () => {
         console.log(data)
         const {humidity, pressure, temp, feels_like, temp_max, temp_min} = data.main;
         const {description, icon} = data.weather[0];
+        const {country, sunrise, sunset} = data.sys;
+        const {deg, speed} = data.wind;
+        windDeg.textContent = deg;
+        windSpeed.textContent = speed;
+        locationCountry.textContent = country;
         temperatureDegree.textContent = temp;
+        locationSunrise.textContent = sunrise;
+        locationSunset.textContent = sunset;
         locationTimezone.textContent = data.timezone;
         locationName.textContent = data.name;
         tempMax.textContent = temp_max;
