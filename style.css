@@ -15,18 +15,34 @@ body {
   color: white;
 }
 
-.location, .temperature{
+.location {
+  height: 30vh;
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid yellow;
+  flex-direction: column;
+}
+
+.location-header {
+  display: flex;
+  border: 1px solid red;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.temperature{
   height: 30vh;
   width: 50%;
   display: flex;
   justify-content: space-around;
   align-items: center;
   border: 1px solid red;
-}
-
-.temperature {
   flex-direction: column;
 }
+
 
 .degree-section {
   display: flex;

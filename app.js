@@ -17,6 +17,11 @@ window.addEventListener('load', () => {
   let windDeg = document.querySelector('.wind-deg');
   let windSpeed = document.querySelector('.wind-speed');
 
+  const convertTemp = kelvin => {
+    let farenheight = (kelvin - 273.15) * 9/5 + 32;
+    return Math.round(farenheight);
+  };
+
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(position => {
       // console.log(position)
@@ -37,13 +42,13 @@ window.addEventListener('load', () => {
         windDeg.textContent = deg;
         windSpeed.textContent = speed;
         locationCountry.textContent = country;
-        temperatureDegree.textContent = temp;
+        temperatureDegree.textContent = convertTemp(temp);
         locationSunrise.textContent = sunrise;
         locationSunset.textContent = sunset;
         locationTimezone.textContent = data.timezone;
         locationName.textContent = data.name;
-        tempMax.textContent = temp_max;
-        tempMin.textContent = temp_min;
+        tempMax.textContent = convertTemp(temp_max);
+        tempMin.textContent = convertTemp(temp_min);
         tempHumidity.textContent = humidity;
         tempPressure.textContent = pressure;
         temperatureDescription.textContent = description;

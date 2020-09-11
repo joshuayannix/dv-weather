@@ -9,26 +9,34 @@
 <body>
 
   <div class="location">
-    <h1 class="location-timezone">Timezone</h1>
-    <img id='location-icon'>
-    <h1 class='location-name'></h1>
-    <h2 class="location-country"></h2>
-    <h3 class="location-sunrise"></h3>
-    <h3 class="location-sunset"></h3>
-    <h3 class="wind-speed"></h3>
-    <h3 class="wind-deg"></h3>
-  </div>    
+    <section class="location-header">
+      <h1 class="location-timezone">Timezone</h1>
+      <img id='location-icon'>
+      <h1 class='location-name'></h1>
+      <h2 class="location-country"></h2>
+    </section>
+    <section class="location-subheader">
+      <h1 class="temperature-description">Loading description...</h1>
+      <h3 class="location-sunrise"></h3>
+      <h3 class="location-sunset"></h3>
+      <h3 class="wind-speed"></h3>
+      <h3 class="wind-deg"></h3>
+    </section>
+  </div> 
+
   <div class="temperature">
     <div class="degree-section">
       <h2 class="temperature-degree">Loading temperature...</h2>
       <span>F</span>
     </div>
-    <div class="temperature-feels_like"></div>
-    <div class="temp-max"></div>
-    <div class="temp-min"></div>
+    <div>Feels Like: <span class="temperature-feels_like"></span> F</div>
+    <div>Max Temp: <span class="temp-max"></span> F</div>
+    <div>Min Temp: <span class="temp-min"></span> F</div>
+    <div>Humidity: <span class="humidity"></span></div>
+    <div>Pressure <span class="pressure"></span></div>
+   
     <div class="humidity"></div>
     <div class="pressure"></div>
-    <div class="temperature-description">Loading description...</div>
   </div>
 
   <script src='app.js'></script>
