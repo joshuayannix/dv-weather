@@ -4,6 +4,12 @@ window.addEventListener('load', () => {
   let temperatureDescription = document.querySelector('.temperature-description');
   let temperatureDegree = document.querySelector('.temperature-degree');
   let locationTimezone = document.querySelector('.location-timezone');
+  let locationName = document.querySelector('.location-name');
+  let temperatureFeelsLike = document.querySelector('.temperature-feels_like');
+  let tempMax = document.querySelector('.temp-max');
+  let tempMin = document.querySelector('.temp-min');
+  let tempHumidity = document.querySelector('.humidity');
+  let tempPressure = document.querySelector('.pressure');
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(position => {
@@ -18,11 +24,16 @@ window.addEventListener('load', () => {
       })
       .then(data => {
         console.log(data)
-        const {humidity, pressure, temp, temp_max, temp_min} = data.main;
+        const {humidity, pressure, temp, feels_like, temp_max, temp_min} = data.main;
         temperatureDegree.textContent = temp;
         locationTimezone.textContent = data.timezone;
-        console.log(data.timezone)
-        temperatureDescription.textContent = data.weather[0].description
+        locationName.textContent = data.name;
+        tempMax.textContent = temp_max;
+        tempMin.textContent = temp_min;
+        tempHumidity.textContent = humidity;
+        tempPressure.textContent = pressure;
+        temperatureDescription.textContent = data.weather[0].description;
+        temperatureFeelsLike.textContent = feels_like;
       })
     });
 
