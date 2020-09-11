@@ -10,6 +10,7 @@ window.addEventListener('load', () => {
   let tempMin = document.querySelector('.temp-min');
   let tempHumidity = document.querySelector('.humidity');
   let tempPressure = document.querySelector('.pressure');
+  let locationIcon = document.getElementById('location-icon')
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(position => {
@@ -25,6 +26,7 @@ window.addEventListener('load', () => {
       .then(data => {
         console.log(data)
         const {humidity, pressure, temp, feels_like, temp_max, temp_min} = data.main;
+        const {description, icon} = data.weather[0];
         temperatureDegree.textContent = temp;
         locationTimezone.textContent = data.timezone;
         locationName.textContent = data.name;
@@ -32,8 +34,9 @@ window.addEventListener('load', () => {
         tempMin.textContent = temp_min;
         tempHumidity.textContent = humidity;
         tempPressure.textContent = pressure;
-        temperatureDescription.textContent = data.weather[0].description;
+        temperatureDescription.textContent = description;
         temperatureFeelsLike.textContent = feels_like;
+        locationIcon.src=`http://openweathermap.org/img/wn/${icon}@2x.png`;
       })
     });
 
