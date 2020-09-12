@@ -44,6 +44,35 @@ window.addEventListener('load', () => {
     return formattedTime;
   };
 
+  async function getWeather(api) {
+    try {
+      const result = await fetch(api);
+      const data = await result.json();
+      console.log(data)
+      const {humidity, pressure, temp, feels_like, temp_max, temp_min} = data.main;
+      const {description, icon} = data.weather[0];
+      const {country, sunrise, sunset} = data.sys;
+      const {deg, speed} = data.wind;
+      windDeg.textContent = deg;
+      windSpeed.textContent = Math.round(speed * 2.237);
+      locationCountry.textContent = country;
+      temperatureDegree.textContent = convertTemp(temp);
+      locationSunrise.textContent = convertTimestamp(sunrise);
+      locationSunset.textContent = convertTimestamp(sunset);
+      locationTimezone.textContent = convertTimezone(data.timezone);
+      locationName.textContent = data.name;
+      tempMax.textContent = convertTemp(temp_max);
+      tempMin.textContent = convertTemp(temp_min);
+      tempHumidity.textContent = humidity;
+      tempPressure.textContent = pressure;
+      temperatureDescription.textContent = description;
+      temperatureFeelsLike.textContent = feels_like;
+      locationIcon.src=`http://openweathermap.org/img/wn/${icon}@2x.png`;
+    } catch(error) {
+      console.log(error)
+    }
+  }
+
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(position => {
       // console.log(position)
@@ -51,35 +80,8 @@ window.addEventListener('load', () => {
       lat = position.coords.latitude;
       const api = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=ad4e5a45e55e91999a3bf297f3a10367`;
 
-      fetch(api)
-      .then(result => {
-        return result.json();
-      })
-      .then(data => {
-        console.log(data)
-        const {humidity, pressure, temp, feels_like, temp_max, temp_min} = data.main;
-        const {description, icon} = data.weather[0];
-        const {country, sunrise, sunset} = data.sys;
-        const {deg, speed} = data.wind;
-        windDeg.textContent = deg;
-        windSpeed.textContent = Math.round(speed * 2.237);
-        locationCountry.textContent = country;
-        temperatureDegree.textContent = convertTemp(temp);
-        locationSunrise.textContent = convertTimestamp(sunrise);
-        locationSunset.textContent = convertTimestamp(sunset);
-        locationTimezone.textContent = convertTimezone(data.timezone);
-        locationName.textContent = data.name;
-        tempMax.textContent = convertTemp(temp_max);
-        tempMin.textContent = convertTemp(temp_min);
-        tempHumidity.textContent = humidity;
-        tempPressure.textContent = pressure;
-        temperatureDescription.textContent = description;
-        temperatureFeelsLike.textContent = feels_like;
-        locationIcon.src=`http://openweathermap.org/img/wn/${icon}@2x.png`;
-      })
+      getWeather(api)
     });
-
-
   }
 
 })
