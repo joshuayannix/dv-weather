@@ -9,33 +9,39 @@
 <body>
 
   <div class="location">
+
     <section class="location-header">
       <h1 class="location-timezone">Timezone</h1>
       <img id='location-icon'>
       <h1 class='location-name'></h1>
       <h2 class="location-country"></h2>
     </section>
-    <section class="location-subheader">
-      <h1 class="temperature-description"></h1>
-      <div>Sunrise: <span class="location-sunrise"></span></div>
-      <div>Sunset: <span class="location-sunset"></span></div>
-      <div>Wind speed: <span class="wind-speed"></span> mph</div>
-      <div>Wind degrees: <span class="wind-deg"></span>°</div>
+
+    <section class="data">
+
+      <section class="details">
+        <h1 class="temperature-description"></h1>
+        <div>Sunrise: <span class="location-sunrise"></span></div>
+        <div>Sunset: <span class="location-sunset"></span></div>
+        <div>Wind speed: <span class="wind-speed"></span> mph</div>
+        <div>Wind degrees: <span class="wind-deg"></span>°</div>
+      </section>
+
+      <section class="description">
+        <div class="degree-section">
+          <h2 class="temperature-degree"></h2>
+          <span>F</span>
+        </div>
+        <div>Feels Like: <span class="temperature-feels_like"></span> F</div>
+        <div>Max Temp: <span class="temp-max"></span> F</div>
+        <div>Min Temp: <span class="temp-min"></span> F</div>
+        <div>Humidity: <span class="humidity"></span>%</div>
+        <div>Pressure <span class="pressure"></span></div>
+      </section>
+      
     </section>
+
   </div> 
-
-  <div class="temperature">
-    <div class="degree-section">
-      <h2 class="temperature-degree"></h2>
-      <span>F</span>
-    </div>
-    <div>Feels Like: <span class="temperature-feels_like"></span> F</div>
-    <div>Max Temp: <span class="temp-max"></span> F</div>
-    <div>Min Temp: <span class="temp-min"></span> F</div>
-    <div>Humidity: <span class="humidity"></span>%</div>
-    <div>Pressure <span class="pressure"></span></div>
-
-  </div>
 
   <script src='app.js'></script>
 </body>
