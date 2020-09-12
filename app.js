@@ -22,6 +22,28 @@ window.addEventListener('load', () => {
     return Math.round(farenheight);
   };
 
+  const convertTimezone = timezone => {
+    switch (timezone) {
+      case -14400 :
+        return 'Eastern';
+      case -18000 :
+        return 'Central';
+      case -21600 :
+        return 'Mountain';
+      case -25200 :
+        return 'Pacific';
+    }
+  };
+
+  const convertTimestamp = timestamp => {
+    let date = new Date(timestamp * 1000);
+    let hours = date.getHours();
+    let minutes = '0' + date.getMinutes();
+    let seconds = '0' + date.getSeconds();
+    let formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+    return formattedTime;
+  };
+
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(position => {
       // console.log(position)
@@ -40,12 +62,12 @@ window.addEventListener('load', () => {
         const {country, sunrise, sunset} = data.sys;
         const {deg, speed} = data.wind;
         windDeg.textContent = deg;
-        windSpeed.textContent = speed;
+        windSpeed.textContent = Math.round(speed * 2.237);
         locationCountry.textContent = country;
         temperatureDegree.textContent = convertTemp(temp);
-        locationSunrise.textContent = sunrise;
-        locationSunset.textContent = sunset;
-        locationTimezone.textContent = data.timezone;
+        locationSunrise.textContent = convertTimestamp(sunrise);
+        locationSunset.textContent = convertTimestamp(sunset);
+        locationTimezone.textContent = convertTimezone(data.timezone);
         locationName.textContent = data.name;
         tempMax.textContent = convertTemp(temp_max);
         tempMin.textContent = convertTemp(temp_min);
